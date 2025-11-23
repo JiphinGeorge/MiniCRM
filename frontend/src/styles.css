@@ -223,7 +223,8 @@ body {
 
 .card-wrapper {
   width: 100%;
-  max-width: 700px;
+  max-width: 420px; /* perfect size for auth cards */
+  margin: auto;
 }
 
 /* SweetAlert2 Glass Popups */
@@ -258,4 +259,80 @@ body {
   border-radius: 10px !important;
   padding: 10px 18px !important;
   font-weight: 600 !important;
+}
+
+/* 🎨 Glass Background Shapes for Auth Pages */
+.auth-bg {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-bg::before {
+  content: "";
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  background: #6366f1;
+  filter: blur(120px);
+  opacity: 0.45;
+  border-radius: 50%;
+  top: 10%;
+  left: -10%;
+  z-index: -1;
+}
+
+.auth-bg::after {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  background: #e11d48;
+  filter: blur(140px);
+  opacity: 0.4;
+  border-radius: 50%;
+  bottom: 5%;
+  right: -10%;
+  z-index: -1;
+}
+
+/* Auth link styling */
+.auth-link {
+  margin-top: 12px;
+  text-align: center;
+  color: var(--accent);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+/* Password toggle */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px; /* space for the icon */
+}
+
+.password-toggle {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 18px;
+  user-select: none;
+}
+
+.text-center {
+  text-align: center;
 }

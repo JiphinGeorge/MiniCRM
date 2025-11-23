@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../api";
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
+  const [showPass, setShowPass] = useState(false);
   const [err, setErr] = useState("");
   const navigate = useNavigate();
 
@@ -20,31 +21,48 @@ export default function Login() {
   };
 
   return (
-    <div className="centered">
-      <div className="card-wrapper">
-        <div className="card">
-          <h2>Login</h2>
-          <form onSubmit={submit} className="form">
-            <label>Email</label>
-            <input
-              type="email"
-              required
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-            />
+    <div className="auth-bg">
+      <div className="centered">
+        <div className="card-wrapper">
+          <div className="card auth-card">
+            <h2 className="text-center">Login</h2>
 
-            <label>Password</label>
-            <input
-              type="password"
-              required
-              value={form.password}
-              onChange={(e) => setForm({ ...form, password: e.target.value })}
-            />
+            <form onSubmit={submit} className="form">
+              <label>Email</label>
+              <input
+                type="email"
+                required
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+              />
 
-            {err && <div className="error">{err}</div>}
+              <label>Password</label>
+              <div className="password-wrapper">
+                <input
+                  type={showPass ? "text" : "password"}
+                  required
+                  value={form.password}
+                  onChange={(e) =>
+                    setForm({ ...form, password: e.target.value })
+                  }
+                />
+                <span
+                  className="password-toggle"
+                  onClick={() => setShowPass(!showPass)}
+                >
+                  {showPass ? "🙈" : "👁️"}
+                </span>
+              </div>
 
-            <button className="btn">Login</button>
-          </form>
+              {err && <div className="error">{err}</div>}
+
+              <button className="btn">Login</button>
+            </form>
+
+            <Link to="/register" className="auth-link text-center">
+              Don’t have an account? Register
+            </Link>
+          </div>
         </div>
       </div>
     </div>

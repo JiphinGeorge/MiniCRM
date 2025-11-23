@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // ✅ Added Link here
 import api from "../api";
 
 export default function Register() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
+  const [showPass, setShowPass] = useState(false);
 
   const submit = async (e) => {
     e.preventDefault();
@@ -19,38 +20,55 @@ export default function Register() {
   };
 
   return (
-    <div className="centered">
-      <div className="card-wrapper">
-        <div className="card">
-          <h2>Register</h2>
-          <form onSubmit={submit} className="form">
-            <label>Name</label>
-            <input
-              required
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-            />
+    <div className="auth-bg">
+      <div className="centered">
+        <div className="card-wrapper">
+          <div className="card">
+            <h2 className="text-center">Register</h2>
 
-            <label>Email</label>
-            <input
-              type="email"
-              required
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-            />
+            <form onSubmit={submit} className="form">
+              <label>Name</label>
+              <input
+                required
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+              />
 
-            <label>Password</label>
-            <input
-              type="password"
-              required
-              value={form.password}
-              onChange={(e) => setForm({ ...form, password: e.target.value })}
-            />
+              <label>Email</label>
+              <input
+                type="email"
+                required
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+              />
 
-            {msg && <div className="info">{msg}</div>}
+              <label>Password</label>
+              <div className="password-wrapper">
+                <input
+                  type={showPass ? "text" : "password"}
+                  required
+                  value={form.password}
+                  onChange={(e) =>
+                    setForm({ ...form, password: e.target.value })
+                  }
+                />
+                <span
+                  className="password-toggle"
+                  onClick={() => setShowPass(!showPass)}
+                >
+                  {showPass ? "🙈" : "👁️"}
+                </span>
+              </div>
 
-            <button className="btn">Register</button>
-          </form>
+              {msg && <div className="info">{msg}</div>}
+
+              <button className="btn">Register</button>
+            </form>
+
+            <Link to="/login" className="auth-link text-center">
+              Already have an account? Login
+            </Link>
+          </div>
         </div>
       </div>
     </div>
