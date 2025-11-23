@@ -20,16 +20,33 @@ export default function Login() {
   };
 
   return (
-    <div className="card">
-      <h2>Login</h2>
-      <form onSubmit={submit} className="form">
-        <label>Email</label>
-        <input type="email" required value={form.email} onChange={e=>setForm({...form, email:e.target.value})} />
-        <label>Password</label>
-        <input type="password" required value={form.password} onChange={e=>setForm({...form, password:e.target.value})} />
-        {err && <div className="error">{err}</div>}
-        <button className="btn">Login</button>
-      </form>
+    <div className="centered">
+      <div className="card-wrapper">
+        <div className="card">
+          <h2>Login</h2>
+          <form onSubmit={submit} className="form">
+            <label>Email</label>
+            <input
+              type="email"
+              required
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+            />
+
+            <label>Password</label>
+            <input
+              type="password"
+              required
+              value={form.password}
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
+            />
+
+            {err && <div className="error">{err}</div>}
+
+            <button className="btn">Login</button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

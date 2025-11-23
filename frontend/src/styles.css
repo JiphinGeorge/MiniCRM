@@ -1,7 +1,12 @@
-/* Simple clean styles */
+/* 🌈 Glassmorphic Theme */
 :root {
-  --accent: #2b6cb0;
-  --muted: #666;
+  --accent: #4f46e5;
+  --accent-light: #6366f1;
+  --danger: #e11d48;
+  --muted: #6b7280;
+  --bg: #eef1f7;
+  --card-bg: rgba(255, 255, 255, 0.65);
+  --border: rgba(255, 255, 255, 0.5);
 }
 
 * {
@@ -11,99 +16,157 @@
 
 body {
   margin: 0;
-  background: #f6f8fa;
+  background: linear-gradient(135deg, #eef1f7, #dbe3ff);
   color: #111;
 }
 
-/* Center container */
+/* Container */
 .container {
   max-width: 1000px;
   margin: 24px auto;
   padding: 12px;
 }
 
-/* NAV */
-.nav {
+/* 🟦 Glass Navbar */
+.glass-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 24px;
-  background: #fff;
-  border-bottom: 1px solid #eee;
+  padding: 14px 28px;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Brand */
 .brand {
+  font-size: 22px;
   font-weight: 700;
   color: var(--accent);
   text-decoration: none;
+  letter-spacing: 0.6px;
 }
 
-.nav-right a,
-.nav-right button {
-  margin-left: 12px;
-  text-decoration: none;
-  color: var(--muted);
-  background: none;
-  border: none;
+/* Navbar right side */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Nav buttons */
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   cursor: pointer;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.25s;
 }
 
-/* CARDS */
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.55);
+  transform: translateY(-2px);
+}
+
+.nav-btn-danger {
+  color: var(--danger);
+}
+
+.nav-btn-danger:hover {
+  background: rgba(255, 0, 0, 0.12);
+}
+
+/* 🟨 Cards (Glass) */
 .card {
-  background: #fff;
-  padding: 18px;
-  border-radius: 8px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-  margin-bottom: 16px;
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 14px;
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
 }
 
 .card-sm {
-  padding: 12px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
 }
 
-/* FORMS */
+/* Forms */
 .form {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   max-width: 480px;
 }
 
 .form input,
 .form textarea {
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  padding: 10px;
+  border: 2px solid #d4d7dd;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  transition: 0.25s;
 }
 
-.form textarea {
-  min-height: 80px;
-  resize: vertical;
+.form input:focus,
+.form textarea:focus {
+  border-color: var(--accent);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
+  outline: none;
 }
 
-/* BUTTONS */
+/* Buttons */
 .btn {
   background: var(--accent);
   color: #fff;
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: 10px 14px;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
+  transition: 0.25s;
+}
+
+.btn:hover {
+  background: var(--accent-light);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
 }
 
 .btn-outline {
-  background: #fff;
-  border: 1px solid #ddd;
-  color: #333;
-  padding: 8px 12px;
-  border-radius: 6px;
+  background: transparent;
+  border: 2px solid var(--accent-light);
+  color: var(--accent);
+  padding: 9px 12px;
+  border-radius: 10px;
+  transition: 0.25s;
 }
 
-.btn-ghost {
-  background: none;
-  border: none;
-  color: var(--muted);
-  cursor: pointer;
+.btn-outline:hover {
+  background: var(--accent-light);
+  color: white;
 }
 
 .btn-sm {
@@ -112,40 +175,46 @@ body {
 }
 
 .btn-danger {
-  background: #e53e3e;
+  background: var(--danger);
+  color: white;
+  box-shadow: 0 2px 8px rgba(225, 29, 72, 0.25);
 }
 
-/* GRID */
+.btn-danger:hover {
+  background: #be123c;
+}
+
+/* Grid for customer cards */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 12px;
+  gap: 16px;
   margin-top: 12px;
 }
 
-/* ALERTS */
+/* Alerts */
 .error {
   color: #b91c1c;
-  background: #fff0f0;
-  padding: 8px;
-  border-radius: 6px;
+  background: #ffe5e5;
+  padding: 10px;
+  border-radius: 8px;
 }
 
 .info {
-  color: #2c7a7b;
-  background: #f0fdfa;
-  padding: 8px;
-  border-radius: 6px;
+  color: #2563eb;
+  background: #e5f0ff;
+  padding: 10px;
+  border-radius: 8px;
 }
 
-/* ACTION BUTTONS IN CUSTOMER CARDS */
+/* CustomerCard actions */
 .actions {
   display: flex;
   gap: 8px;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
-/* ⭐ NEW: Proper page centering */
+/* Center wrapper */
 .centered {
   display: flex;
   justify-content: center;
@@ -154,5 +223,39 @@ body {
 
 .card-wrapper {
   width: 100%;
-  max-width: 700px; /* Adjust size for your layout */
+  max-width: 700px;
+}
+
+/* SweetAlert2 Glass Popups */
+.glass-popup {
+  backdrop-filter: blur(15px) saturate(150%) !important;
+  border-radius: 16px !important;
+  padding: 20px !important;
+  background: rgba(255, 255, 255, 0.45) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+}
+
+.glass-confirm-btn {
+  background: var(--accent) !important;
+  color: white !important;
+  border-radius: 10px !important;
+  padding: 10px 18px !important;
+  font-weight: 600 !important;
+}
+
+.glass-danger-btn {
+  background: var(--danger) !important;
+  color: white !important;
+  border-radius: 10px !important;
+  padding: 10px 18px !important;
+  font-weight: 600 !important;
+}
+
+.glass-cancel-btn {
+  background: rgba(255, 255, 255, 0.6) !important;
+  color: #333 !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  border-radius: 10px !important;
+  padding: 10px 18px !important;
+  font-weight: 600 !important;
 }
