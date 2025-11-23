@@ -78,26 +78,24 @@ export default function Customers() {
   }, []);
 
   return (
-    <div className="centered">
-      <div className="card-wrapper">
-        <div className="card">
-          <h2>Your Customers</h2>
-          <Link to="/customers/add" className="btn">
-            Add Customer
-          </Link>
-        </div>
+    <div className="container">
+      <div className="card">
+        <h2>Your Customers</h2>
+        <Link to="/customers/add" className="btn">
+          Add Customer
+        </Link>
+      </div>
 
-        {err && <div className="card error">{err}</div>}
+      {err && <div className="card error">{err}</div>}
 
-        <div className="grid">
-          {customers.length === 0 && (
-            <div className="card">No customers yet.</div>
-          )}
+      <div className="grid">
+        {customers.length === 0 && (
+          <div className="card">No customers yet.</div>
+        )}
 
-          {customers.map((c) => (
-            <CustomerCard key={c.id} customer={c} onDelete={remove} />
-          ))}
-        </div>
+        {customers.map((c) => (
+          <CustomerCard key={c.id} customer={c} onDelete={remove} />
+        ))}
       </div>
     </div>
   );
