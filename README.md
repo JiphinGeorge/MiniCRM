@@ -1,289 +1,205 @@
-MiniCRM
+# MiniCRM
 
-A clean, glassmorphic small CRM built with React (Vite) for the frontend and Express + MySQL for the backend.
-Features modern UI (glassmorphism), authentication, customer CRUD, SweetAlert2 popups, and responsive card-based customer listing.
+A clean, glassmorphic CRM application built with **React (Vite)**, **Express.js**, and **MySQL**.  
+Includes authentication, customer management (CRUD), and modern UI with SweetAlert2 popups.
 
+---
 
-Table of contents
+## 🚀 Features
 
-Demo
+- 🔐 Login & Registration (JWT Auth)
+- 🛡 Protected pages (Dashboard, Customers)
+- 👤 Add / Edit / Delete customers
+- 🎨 Beautiful Glassmorphism UI
+- 🧊 SweetAlert2 confirmation modals
+- 📱 4-per-row customer card layout
+- ⚡ Fast frontend using Vite
+- 🗄 MySQL database storage
 
-Features
+---
 
-Tech stack
+## 🛠 Tech Stack
 
-Project structure
+### **Frontend**
+- React (Vite)
+- Axios
+- React Router DOM
+- SweetAlert2
+- lucide-react (icons)
 
-Requirements
+### **Backend**
+- Node.js + Express
+- MySQL
+- JWT
+- bcrypt
 
-Environment variables
+---
 
-Setup — Backend (Express + MySQL)
-
-Setup — Frontend (React + Vite)
-
-API Endpoints
-
-Usage
-
-Customizations & Tips
-
-Roadmap / TODO
-
-Contributing
-
-License
-
-Demo
-
-This is a local project example. Run the backend and frontend locally (instructions below) to test.
-
-Features
-
-Login & registration (JWT-based)
-
-Protected routes (dashboard, customers) in frontend
-
-Add / Edit / Delete customers (CRUD)
-
-SweetAlert2 glass-style confirmation & success popups
-
-Glassmorphic UI (cards, navbar, forms)
-
-Customer list presented as modern glass cards (4 per row on wide screens)
-
-Responsive layout (optional responsive variant available)
-
-Simple MySQL schema for users & customers
-
-Tech stack
-
-Frontend
-
-React (Vite)
-
-react-router-dom
-
-lucide-react (icons)
-
-sweetalert2 (modals)
-
-Axios (api)
-
-Backend
-
-Node.js + Express
-
-MySQL
-
-bcrypt (password hashing)
-
-jsonwebtoken (JWT)
-
-Project structure (high level)
-/frontend
-  /src
-    /components
-      Navbar.jsx
-      CustomerCard.jsx
-    /pages
-      Login.jsx
-      Register.jsx
-      Dashboard.jsx
-      Customers.jsx
-      AddCustomer.jsx
-      EditCustomer.jsx
-    styles.css
-    api.js
-    main.jsx
-/backend
-  /routes
-    auth.js
-    customers.js
-  /middleware
-    auth.js
-  config
-    db.js
-  app.js (or server.js)
-README.md
-
-Requirements
-
-Node.js (v16+ recommended)
-
-npm or yarn
-
-MySQL server
-
-(Optional) Git
-
-Environment variables
-
-Create .env files for backend and frontend (if needed).
-
-Backend (/backend/.env)
-
-PORT=5000
-DB_HOST=localhost
-DB_USER=your_mysql_user
-DB_PASS=your_mysql_password
-DB_NAME=mini_crm_db
-JWT_SECRET=your_jwt_secret_here
+## 📁 Project Structure
+image
 
 
-Frontend (if using env variables) — e.g. /frontend/.env
+---
 
-VITE_API_URL=http://localhost:5000/api
+## ⚙️ Installation & Setup
 
-Setup — Backend (Express + MySQL)
+### **1️⃣ Backend Setup**
 
-Open terminal, go to backend folder:
-
+```bash
 cd backend
 npm install
+```
+## 📦 Database Setup
 
-
-Initialize database (example SQL):
-
+### **Create database**
+```sql
 CREATE DATABASE mini_crm_db;
+
 USE mini_crm_db;
 
--- users table
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  name VARCHAR(255),
+  email VARCHAR(255) UNIQUE,
+  password VARCHAR(255)
 );
 
--- customers table
 CREATE TABLE customers (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  user_id INT NOT NULL,
+  user_id INT,
   name VARCHAR(255),
   email VARCHAR(255),
-  phone VARCHAR(50),
+  phone VARCHAR(255),
   address TEXT,
   notes TEXT,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+```
+## ⚙️ Environment Variables (`.env`)
+
+Create a `.env` file inside the **backend** directory:
+PORT=5000
+
+DB_HOST=localhost
+
+DB_USER=root
+
+DB_PASS=yourpassword
+
+DB_NAME=mini_crm_db
+
+JWT_SECRET=your_secret
 
 
-Start backend:
+---
 
-# make sure .env is configured
+## ▶️ Run Backend Server
+
+```bash
 npm run dev
-# or
-node app.js
 
-Setup — Frontend (React + Vite)
-
-Open terminal, go to frontend folder:
-
+```
+---
+## 🖥 Frontend Setup
+```bash
 cd frontend
 npm install
-
-
-Make sure api.js points to backend API. Example api.js:
-
-import axios from "axios";
-
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000/api",
-});
-
-export default api;
-
-
-Start frontend:
-
 npm run dev
 
+```
+---
+---
 
-Open http://localhost:5173 (or Vite's printed URL).
+## 📡 API Base URL (Frontend)
 
-API Endpoints (example)
+Ensure your `api.js` contains the correct backend URL:
 
-Prefix: /api
+```js
+const api = axios.create({
+  baseURL: "http://localhost:5000/api",
+});
 
-Auth
+```
+---
+---
 
-POST /auth/register — body: { name, email, password }
+## 🚀 Usage Guide
 
-POST /auth/login — body: { email, password } → returns JWT token
+Once both servers are running:
 
-Customers
+1. **Register** a new account  
+2. **Login** with your credentials  
+3. Access the **Dashboard**  
+4. Manage customers:  
+   - ➕ Add Customer  
+   - ✏️ Edit Customer  
+   - ❌ Delete Customer  
 
-GET /customers — header: x-auth-token: <token> — get all customers for user
+Your session is protected using **JWT Authentication**.
 
-GET /customers/:id — header token — get customer by id
+---
 
-POST /customers — header token — body: { name, email, phone, address, notes }
+## 📡 API Endpoints
 
-PUT /customers/:id — header token — update
+### 🔐 Authentication
+POST /auth/register → Register new user
 
-DELETE /customers/:id — header token — delete
+POST /auth/login → Login & receive JWT token
 
-Usage
+### 👤 Customer Management
 
-Register a new user via the Register page.
+GET    /customers        → Fetch all customers  
+GET    /customers/:id    → Get customer by ID  
+POST   /customers        → Add a new customer  
+PUT    /customers/:id    → Update a customer  
+DELETE /customers/:id    → Delete a customer  
 
-Login with the user; token is stored in localStorage.
+---
 
-Navigate to Customers — add/edit/delete customers.
+## 🧊 Screenshots
 
-Enjoy glass popups and modern UI.
+_Add your screenshots here:_
 
-Customizations & Tips
+```md
+![Screenshot 1](path/to/screenshot1.png)
+![Screenshot 2](path/to/screenshot2.png)
+```
+---
 
-Cards per row: The frontend uses a CSS grid to set 4 cards per row. For responsive behavior, use auto-fit/minmax in .grid.
+## 🗺 Roadmap
 
-SweetAlert2 styles: Customize .glass-popup, .glass-confirm-btn, etc, in styles.css.
+- 🔍 Customer search functionality  
+- 📊 Pagination for large customer lists  
+- 📥 Import / Export CSV  
+- 🖼 Profile avatars for customers  
+- 🌙 Dark mode  
+- 📈 Analytics & charts for dashboard  
 
-Auth token: Provided in x-auth-token header — middleware auth.js should verify JWT.
+---
 
-Deployment: Build frontend (npm run build) and serve static files with Express or host frontend separately (Vercel/Netlify).
-
-Roadmap / TODO
-
-Pagination & search for customers
-
-CSV import/export of contacts
-
-Upload avatar images for customers
-
-Role-based access control (admin vs user)
-
-Dark mode toggle
-
-Contributing
+## 🤝 Contributing
 
 Contributions are welcome!
 
-Fork the repository
+1. **Fork** the repository  
+2. Create a **new branch** (`feature/your-feature`)  
+3. **Commit** your changes  
+4. **Push** to your branch  
+5. Create a **Pull Request**
 
-Create a feature branch (git checkout -b feat/your-feature)
+---
 
-Commit changes (git commit -m "feat: add ...")
+## 📄 License
 
-Open a PR
+This project is licensed under the **MIT License**.  
+You are free to use, modify, and distribute this project.
 
-Please follow existing code style. For UI changes, add screenshots to the PR.
+---
 
-Troubleshooting
+## 👤 Author
 
-If frontend complains about missing styles.css import, ensure src/styles.css exists and is imported from main.jsx.
+**Jiphin George**  
+MiniCRM – A lightweight CRM built for learning & real-world usage.
 
-If CORS errors appear: allow CORS in Express (npm install cors and app.use(cors())).
+---
 
-If DB connection fails: check .env credentials and MySQL service.
-
-License
-
-This project is provided as-is. Add your license (MIT/Apache/etc.) as needed.
-
-Contact
-
-Built by Jiphin George (project owner).
