@@ -1,0 +1,158 @@
+/* Simple clean styles */
+:root {
+  --accent: #2b6cb0;
+  --muted: #666;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Inter, system-ui, Segoe UI, Roboto, "Helvetica Neue", Arial;
+}
+
+body {
+  margin: 0;
+  background: #f6f8fa;
+  color: #111;
+}
+
+/* Center container */
+.container {
+  max-width: 1000px;
+  margin: 24px auto;
+  padding: 12px;
+}
+
+/* NAV */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.brand {
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.nav-right a,
+.nav-right button {
+  margin-left: 12px;
+  text-decoration: none;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* CARDS */
+.card {
+  background: #fff;
+  padding: 18px;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  margin-bottom: 16px;
+}
+
+.card-sm {
+  padding: 12px;
+}
+
+/* FORMS */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 480px;
+}
+
+.form input,
+.form textarea {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* BUTTONS */
+.btn {
+  background: var(--accent);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-outline {
+  background: #fff;
+  border: 1px solid #ddd;
+  color: #333;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.btn-ghost {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.btn-sm {
+  padding: 6px 8px;
+  font-size: 13px;
+}
+
+.btn-danger {
+  background: #e53e3e;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+/* ALERTS */
+.error {
+  color: #b91c1c;
+  background: #fff0f0;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.info {
+  color: #2c7a7b;
+  background: #f0fdfa;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+/* ACTION BUTTONS IN CUSTOMER CARDS */
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* ⭐ NEW: Proper page centering */
+.centered {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.card-wrapper {
+  width: 100%;
+  max-width: 700px; /* Adjust size for your layout */
+}
